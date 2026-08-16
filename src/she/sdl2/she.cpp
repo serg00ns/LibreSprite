@@ -522,7 +522,7 @@ namespace she {
 	  auto delta = now - lastUpTime;
           if (sdlEvent.type == SDL_MOUSEBUTTONUP) {
 	    using namespace std::chrono_literals;
-	    if (delta < 200ms) {
+	    if (delta < 500ms) {
 	      m_events.push(event);
 	      event.setType(Event::MouseDoubleClick);
 	      event.setPosition(event.position());
