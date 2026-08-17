@@ -521,8 +521,13 @@ namespace she {
 	  auto now = std::chrono::steady_clock::now();
 	  auto delta = now - lastUpTime;
           if (sdlEvent.type == SDL_MOUSEBUTTONUP) {
+		#if defined(ANDROID)
+			  	#define DOUBLE_CLICK_INTERVAL 500ms
+		#else
+				#define DOUBLE_CLICK_INTERVAL 200ms
+		#endif
 	    using namespace std::chrono_literals;
-	    if (delta < 500ms) {
+	    if (delta < DOUBLE_CLICK_INTERVAL) {
 	      m_events.push(event);
 	      event.setType(Event::MouseDoubleClick);
 	      event.setPosition(event.position());
